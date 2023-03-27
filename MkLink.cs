@@ -224,10 +224,9 @@ namespace MKlink
             }
 
             //执行完后删除文件，退出递归。
-            if ((File.GetAttributes(MoveDir) & FileAttributes.ReadOnly) == FileAttributes.ReadOnly)
-            {
-                File.SetAttributes(MoveDir, FileAttributes.Normal);
-            }
+
+            File.SetAttributes(MoveDir, FileAttributes.Normal);
+
             Directory.Delete(MoveDir);
             return;
         }
