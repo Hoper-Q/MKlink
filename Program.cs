@@ -1,3 +1,5 @@
-﻿using MKlink;
+﻿using mklink程序;
+
 MkLink mkLink = new MkLink();
-mkLink.RunCmd();
+
+mkLink.ChooseModel();

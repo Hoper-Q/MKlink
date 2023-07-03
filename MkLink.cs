@@ -1,69 +1,75 @@
-using System.Diagnostics;
-using System.ComponentModel;
-
-namespace MKlink
+namespace mklink程序
 {
+    using System.Diagnostics;
+    using System.ComponentModel;
+    using System.IO;
     public class MkLink
     {
         const int Eorro_One = 2;
         const int Eorro_Two = 5;
+        private string MoveDir;
+        private string target;
+        private string _Dir;
+        public void ChooseModel()
+        {
+            Console.WriteLine("请选择模式\n1:为先将文件移动到目标位置再创建连接\n2:在目标位置创建链接，不移动文件夹");
+            string Select = Console.ReadLine();
+            if (Select.ToLower() == "1")
+            {
+                GetMassage();
+                Move();
+                RunCmd();
+            }
+            else if (Select.ToLower() == "2")
+            {
+                GetMassage();
+                string temp = MoveDir;
+                MoveDir = target + _Dir;
+                target = temp;
+                _Dir = "";
+                RunCmd();
+            }
+            else
+            {
+                Console.WriteLine("请输入正确的数字");
+            }
+        }
 
-        public void RunCmd()
+        private void GetMassage()
         {
             Console.WriteLine("请输入要移动的文件夹");
-            string MoveDir = Console.ReadLine();
+            MoveDir = Console.ReadLine();
             Console.WriteLine("请输入要移动到的文件夹");
-            string target = Console.ReadLine();
+            target = Console.ReadLine();
             if (MoveDir == "" || MoveDir == null || target == "" || target == null)
             {
-                Console.WriteLine("请输入正确的位置");
+                Console.WriteLine("请输入正确的位置\n按ESC退出程序\n按Q返回第一步\n其他任意键重新开始此步骤");
+                ConsoleKeyInfo key = Console.ReadKey();
+                if (key.Key == ConsoleKey.Escape)
+                {
+                    Environment.Exit(0);
+                }
+                else if (key.Key == ConsoleKey.Q)
+                {
+                    ChooseModel();
+                }
+                else
+                {
+                    GetMassage();
+                }
                 return;
             }
             string[] temp = MoveDir.Split("\\");
 
-            string _Dir = "\\" + temp[temp.Length - 1];
+            _Dir = "\\" + temp[temp.Length - 1];
+        }
 
-            DirectoryInfo directoryInfo = new DirectoryInfo(MoveDir);
-            string[] strfilename = Directory.GetFiles(MoveDir);
-            if (Directory.Exists(target + _Dir))
-            {
-                Console.WriteLine("目标位置已存在同名文件夹");
-                return;
-            }
-            else
-            {
-                try
-                {
-                    Console.WriteLine("正在移动请稍后");
-
-                    // Directory.CreateDirectory(target + _Dir);
-                    // for (var i = 0; i < strfilename.Length; i++)
-                    // {
-                    //     // Console.WriteLine(strfilename[i]);
-
-                    //     string[] templist = strfilename[i].Split("\\");
-
-                    //     File.Copy(strfilename[i], target + _Dir + "\\" + templist[templist.Length - 1]);
-                    // }
-
-                    CopyToTarget(MoveDir, target, _Dir);
-
-                    Console.WriteLine("复制完成");
-                    Console.WriteLine("开始删除源文件");
-                    DeleteOrigin(MoveDir, target, _Dir);
-                    Console.WriteLine("删除完毕");
-                }
-                catch (IOException e)
-                {
-                    Console.WriteLine(e.Message + "传输问题");
-                    Console.ReadKey();
-                }
-
-            }
-
-
+        /// <summary>
+        /// 执行CMD命令
+        /// </summary>
+        private void RunCmd()
+        {
             Process process = new Process();
-
             Console.WriteLine(MoveDir + "\t" + target + _Dir);
             try
             {
@@ -76,7 +82,7 @@ namespace MKlink
 
                 process.Start();
 
-                process.StandardInput.WriteLine("mklink /j " + MoveDir + " " + target + _Dir);
+                process.StandardInput.WriteLine("mklink /j " + "\"" + MoveDir + "\"" + " " + "\"" + target + _Dir + "\"");
                 process.StandardInput.AutoFlush = true;
                 process.StandardInput.WriteLine("exit");
 
@@ -116,7 +122,52 @@ namespace MKlink
             Console.ReadKey();
         }
 
+        /// <summary>
+        /// 移动文件操作
+        /// </summary>
+        /// <param name="MoveDir"></param>
+        /// <param name="target"></param>
+        /// <param name="_Dir"></param>
+        private void Move()
+        {
+            DirectoryInfo directoryInfo = new DirectoryInfo(MoveDir);
+            string[] strfilename = Directory.GetFiles(MoveDir);
+            if (Directory.Exists(target + _Dir))
+            {
+                Console.WriteLine("目标位置已存在同名文件夹");
+                return;
+            }
+            else
+            {
+                try
+                {
+                    Console.WriteLine("正在移动请稍后");
 
+                    // Directory.CreateDirectory(target + _Dir);
+                    // for (var i = 0; i < strfilename.Length; i++)
+                    // {
+                    //     // Console.WriteLine(strfilename[i]);
+
+                    //     string[] templist = strfilename[i].Split("\\");
+
+                    //     File.Copy(strfilename[i], target + _Dir + "\\" + templist[templist.Length - 1]);
+                    // }
+
+                    CopyToTarget(MoveDir, target, _Dir);
+
+                    Console.WriteLine("复制完成");
+                    Console.WriteLine("开始删除源文件");
+                    DeleteOrigin(MoveDir, target, _Dir);
+                    Console.WriteLine("删除完毕");
+                }
+                catch (IOException e)
+                {
+                    Console.WriteLine(e.Message + "传输问题");
+                    Console.ReadKey();
+                }
+
+            }
+        }
 
         /// <summary>
         /// 遍历文件夹里所有文件，并且递归删除文件夹
@@ -224,9 +275,10 @@ namespace MKlink
             }
 
             //执行完后删除文件，退出递归。
-
-            File.SetAttributes(MoveDir, FileAttributes.Normal);
-
+            if ((File.GetAttributes(MoveDir) & FileAttributes.ReadOnly) == FileAttributes.ReadOnly)
+            {
+                File.SetAttributes(MoveDir, FileAttributes.Normal);
+            }
             Directory.Delete(MoveDir);
             return;
         }
