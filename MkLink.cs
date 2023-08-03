@@ -10,31 +10,75 @@ namespace mklink程序
         private string MoveDir;
         private string target;
         private string _Dir;
+        private Action CurrentFunc;
         public void ChooseModel()
         {
-            Console.WriteLine("请选择模式\n1:为先将文件移动到目标位置再创建连接\n2:在目标位置创建链接，不移动文件夹");
-            string Select = Console.ReadLine();
-            if (Select.ToLower() == "1")
+            Console.WriteLine($"可直接关闭程序，但请勿在执行时关闭程序，以免转移程序无法使用");
+            Console.WriteLine("请选择模式\nQ:为先将文件移动到目标位置再创建连接\nW:在目标位置创建链接，不移动文件夹\nE:退出\n请直接输入数字");
+            var Select = Console.ReadLine();
+
+            if (Select.ToLower() == "q")
             {
-                GetMassage();
-                Move();
-                RunCmd();
+                CurrentFunc = MoveAndCreateLink;
+                MoveAndCreateLink();
             }
-            else if (Select.ToLower() == "2")
+            else if (Select.ToLower() == "w")
             {
-                GetMassage();
-                string temp = MoveDir;
-                MoveDir = target + _Dir;
-                target = temp;
-                _Dir = "";
-                RunCmd();
+                CurrentFunc = MKOnly;
+                MKOnly();
+            }
+            else if (Select.ToLower() == "e")
+            {
+                Environment.Exit(0);
             }
             else
             {
-                Console.WriteLine("请输入正确的数字");
+                Console.WriteLine("请输入正确的字母");
+            }
+            GoOnOrReturn();
+        }
+        /// <summary>
+        /// 选择继续还是重新开始还是退出
+        /// </summary>
+        private void GoOnOrReturn()
+        {
+            Console.WriteLine($"E返回上一级菜单,其他任意键继续");
+            var temp = Console.ReadLine();
+            System.Console.WriteLine();
+            if (temp.ToLower() == "e")
+            {
+                ChooseModel();
+            }
+            else
+            {
+                CurrentFunc();
+                GoOnOrReturn();
             }
         }
-
+        /// <summary>
+        /// 为先将文件移动到目标位置再创建连接
+        /// </summary>
+        private void MoveAndCreateLink()
+        {
+            GetMassage();
+            Move();
+            RunCmd();
+        }
+        /// <summary>
+        /// 在目标位置创建链接，不移动文件夹
+        /// </summary>
+        private void MKOnly()
+        {
+            GetMassage();
+            string temp = MoveDir;
+            MoveDir = target + _Dir;
+            target = temp;
+            _Dir = "";
+            RunCmd();
+        }
+        /// <summary>
+        /// 获取文件夹信息
+        /// </summary>
         private void GetMassage()
         {
             Console.WriteLine("请输入要移动的文件夹");
@@ -117,9 +161,6 @@ namespace mklink程序
                     Console.WriteLine(e.Message + "你没有权限");
                 }
             }
-
-            Console.WriteLine("按任意键结束");
-            Console.ReadKey();
         }
 
         /// <summary>
