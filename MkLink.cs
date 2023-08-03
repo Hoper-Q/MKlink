@@ -14,20 +14,20 @@ namespace mklink程序
         public void ChooseModel()
         {
             Console.WriteLine($"可直接关闭程序，但请勿在执行时关闭程序，以免转移程序无法使用");
-            Console.WriteLine("请选择模式\nQ:为先将文件移动到目标位置再创建连接\nW:在目标位置创建链接，不移动文件夹\nESC:退出\n请直接输入数字");
-            var Select = Console.ReadKey();
-            System.Console.WriteLine();
-            if (Select.Key == ConsoleKey.Q)
+            Console.WriteLine("请选择模式\nQ:为先将文件移动到目标位置再创建连接\nW:在目标位置创建链接，不移动文件夹\nE:退出\n请直接输入数字");
+            var Select = Console.ReadLine();
+
+            if (Select.ToLower() == "q")
             {
                 CurrentFunc = MoveAndCreateLink;
                 MoveAndCreateLink();
             }
-            else if (Select.Key == ConsoleKey.W)
+            else if (Select.ToLower() == "w")
             {
                 CurrentFunc = MKOnly;
                 MKOnly();
             }
-            else if (Select.Key == ConsoleKey.Escape)
+            else if (Select.ToLower() == "e")
             {
                 Environment.Exit(0);
             }
@@ -42,10 +42,10 @@ namespace mklink程序
         /// </summary>
         private void GoOnOrReturn()
         {
-            Console.WriteLine($"ESC返回上一级菜单,其他任意键继续");
-            var temp = Console.ReadKey();
+            Console.WriteLine($"E返回上一级菜单,其他任意键继续");
+            var temp = Console.ReadLine();
             System.Console.WriteLine();
-            if (temp.Key == ConsoleKey.Escape)
+            if (temp.ToLower() == "e")
             {
                 ChooseModel();
             }
