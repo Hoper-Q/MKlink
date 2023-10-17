@@ -3,7 +3,6 @@ E:\下载文件\Git\Test1\MKlink\bin\Debug\net6.0\MKlink.deps.json
 E:\下载文件\Git\Test1\MKlink\bin\Debug\net6.0\MKlink.runtimeconfig.json
 E:\下载文件\Git\Test1\MKlink\bin\Debug\net6.0\MKlink.dll
 E:\下载文件\Git\Test1\MKlink\bin\Debug\net6.0\MKlink.pdb
-E:\下载文件\Git\Test1\MKlink\obj\Debug\net6.0\MKlink.csproj.AssemblyReference.cache
 E:\下载文件\Git\Test1\MKlink\obj\Debug\net6.0\MKlink.GeneratedMSBuildEditorConfig.editorconfig
 E:\下载文件\Git\Test1\MKlink\obj\Debug\net6.0\MKlink.AssemblyInfoInputs.cache
 E:\下载文件\Git\Test1\MKlink\obj\Debug\net6.0\MKlink.AssemblyInfo.cs

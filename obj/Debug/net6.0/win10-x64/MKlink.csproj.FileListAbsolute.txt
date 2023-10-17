@@ -220,12 +220,10 @@ E:\下载文件\Git\Test1\MKlink\bin\Debug\net6.0\win10-x64\dbgshim.dll
 E:\下载文件\Git\Test1\MKlink\bin\Debug\net6.0\win10-x64\hostfxr.dll
 E:\下载文件\Git\Test1\MKlink\bin\Debug\net6.0\win10-x64\hostpolicy.dll
 E:\下载文件\Git\Test1\MKlink\bin\Debug\net6.0\win10-x64\mscordaccore.dll
-E:\下载文件\Git\Test1\MKlink\bin\Debug\net6.0\win10-x64\mscordaccore_amd64_amd64_6.0.1623.17311.dll
 E:\下载文件\Git\Test1\MKlink\bin\Debug\net6.0\win10-x64\mscordbi.dll
 E:\下载文件\Git\Test1\MKlink\bin\Debug\net6.0\win10-x64\mscorrc.dll
 E:\下载文件\Git\Test1\MKlink\bin\Debug\net6.0\win10-x64\msquic.dll
 E:\下载文件\Git\Test1\MKlink\bin\Debug\net6.0\win10-x64\ucrtbase.dll
-E:\下载文件\Git\Test1\MKlink\obj\Debug\net6.0\win10-x64\MKlink.csproj.AssemblyReference.cache
 E:\下载文件\Git\Test1\MKlink\obj\Debug\net6.0\win10-x64\MKlink.GeneratedMSBuildEditorConfig.editorconfig
 E:\下载文件\Git\Test1\MKlink\obj\Debug\net6.0\win10-x64\MKlink.AssemblyInfoInputs.cache
 E:\下载文件\Git\Test1\MKlink\obj\Debug\net6.0\win10-x64\MKlink.AssemblyInfo.cs
@@ -236,3 +234,4 @@ E:\下载文件\Git\Test1\MKlink\obj\Debug\net6.0\win10-x64\refint\MKlink.dll
 E:\下载文件\Git\Test1\MKlink\obj\Debug\net6.0\win10-x64\MKlink.pdb
 E:\下载文件\Git\Test1\MKlink\obj\Debug\net6.0\win10-x64\MKlink.genruntimeconfig.cache
 E:\下载文件\Git\Test1\MKlink\obj\Debug\net6.0\win10-x64\ref\MKlink.dll
+E:\下载文件\Git\Test1\MKlink\bin\Debug\net6.0\win10-x64\mscordaccore_amd64_amd64_6.0.2123.36311.dll
