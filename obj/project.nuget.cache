@@ -1,5 +1,6 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "p3jj3NIjmnN6uaxaGkgUZXTtILN7k+WC67T/+Z52gY3Oo+sqrolm/98cz7GtZ9BMGkAoHeEqT/uvhK7AzbARDw==",
   "success": true,
   "projectFilePath": "E:\\下载文件\\Git\\Test1\\MKlink\\MKlink.csproj",
@@ -8,6 +9,15 @@
     "C:\\Users\\ASUS\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.21\\microsoft.windowsdesktop.app.ref.6.0.21.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.21\\microsoft.aspnetcore.app.ref.6.0.21.nupkg.sha512",
     "C:\\Users\\ASUS\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.21\\microsoft.netcore.app.host.win-x64.6.0.21.nupkg.sha512"
+=======
+  "dgSpecHash": "56698XsMEOnLETAwW0lErDaFcljfIFw17Yci63ZR65Y0kqVoljAywKmlKn/Xic7uQzMEl4vavbEc0Z7hlpK/Ew==",
+  "success": true,
+  "projectFilePath": "E:\\下载文件\\Git\\Test1\\MKlink\\MKlink.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ASUS\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\6.0.16\\microsoft.netcore.app.runtime.win-x64.6.0.16.nupkg.sha512",
+    "C:\\Users\\ASUS\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\6.0.16\\microsoft.windowsdesktop.app.runtime.win-x64.6.0.16.nupkg.sha512",
+    "C:\\Users\\ASUS\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\6.0.16\\microsoft.aspnetcore.app.runtime.win-x64.6.0.16.nupkg.sha512"
+>>>>>>> main
   ],
   "logs": []
 }
