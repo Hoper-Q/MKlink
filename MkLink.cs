@@ -242,19 +242,32 @@ namespace mklink程序
             {
                 Directory.CreateDirectory(target + _Dir);
             }
-            for (var i = 0; i < filelist.Length; i++)
+            /// <summary>
+            /// 拷贝文件
+            /// </summary>
+            /// <value></value>
+            try
             {
-                string strfilename = "\\" + filelist[i].Split("\\")[filelist[i].Split("\\").Length - 1];//获取文件名
-                if (File.Exists(target + _Dir + strfilename))
+                for (var i = 0; i < filelist.Length; i++)
                 {
-                    Console.WriteLine("出现错误请把目标文件删除重试，不是源文件\n按任意键退出");
-                    System.Environment.Exit(System.Environment.ExitCode);
+                    string strfilename = "\\" + filelist[i].Split("\\")[filelist[i].Split("\\").Length - 1];//获取文件名
+                    if (File.Exists(target + _Dir + strfilename))
+                    {
+                        Console.WriteLine("出现错误请把目标文件删除重试，不是源文件\n按任意键退出");
+                        System.Environment.Exit(System.Environment.ExitCode);
 
+                    }
+                    Console.WriteLine("正在把 " + MoveDir + strfilename + " 复制到 " + target + _Dir + strfilename);
+                    File.Copy(filelist[i], target + _Dir + strfilename);//完成文件拷贝
+                                                                        // File.Delete(filelist[i]);
                 }
-                Console.WriteLine("正在把 " + MoveDir + strfilename + " 复制到 " + target + _Dir + strfilename);
-                File.Copy(filelist[i], target + _Dir + strfilename);//完成文件拷贝
-                // File.Delete(filelist[i]);
             }
+            catch (System.FieldAccessException e)
+            {
+                Console.WriteLine($"复制文件时出现错误");
+                System.Console.WriteLine(e.Message);
+            }
+
 
             //执行完后删除文件，退出递归。
             // Directory.Delete(MoveDir);
@@ -293,34 +306,55 @@ namespace mklink程序
             {
                 Directory.CreateDirectory(target + _Dir);
             }
-            for (var i = 0; i < filelist.Length; i++)
+            /// <summary>
+            /// 尝试删除文件
+            /// </summary>
+            /// <value></value>
+            try
             {
-                string strfilename = "\\" + filelist[i].Split("\\")[filelist[i].Split("\\").Length - 1];//获取文件名
-                Console.WriteLine("正在删除" + MoveDir + strfilename);
-                //File.GetAttributes(filelist[i]).ToString().IndexOf("ReadOnly") != -1
-                if ((File.GetAttributes(filelist[i]) & FileAttributes.ReadOnly) == FileAttributes.ReadOnly)
+                for (var i = 0; i < filelist.Length; i++)
                 {
-                    // Console.WriteLine(filelist[i] + "是只读文件");
-                    // Console.WriteLine(File.GetAttributes(filelist[i]) & FileAttributes.ReadOnly);
-                    // Console.WriteLine(File.GetAttributes(filelist[i]) + "\t" + FileAttributes.ReadOnly);
-                    // Console.WriteLine(File.GetAttributes(filelist[i]) == FileAttributes.ReadOnly);
-                    // Console.WriteLine(File.GetAttributes(filelist[i]));
-                    // Console.WriteLine(FileAttributes.ReadOnly);
-                    // Console.WriteLine(File.GetAttributes(filelist[i]).ToString());
-                    // Console.WriteLine(FileAttributes.ReadOnly.ToString());
-                    File.SetAttributes(filelist[i], FileAttributes.Normal);
-                    // Console.WriteLine(File.GetAttributes(filelist[i]));
-                    // Console.ReadKey();
+                    string strfilename = "\\" + filelist[i].Split("\\")[filelist[i].Split("\\").Length - 1];//获取文件名
+                    Console.WriteLine("正在删除" + MoveDir + strfilename);
+                    //File.GetAttributes(filelist[i]).ToString().IndexOf("ReadOnly") != -1
+                    if ((File.GetAttributes(filelist[i]) & FileAttributes.ReadOnly) == FileAttributes.ReadOnly)
+                    {
+                        // Console.WriteLine(filelist[i] + "是只读文件");
+                        // Console.WriteLine(File.GetAttributes(filelist[i]) & FileAttributes.ReadOnly);
+                        // Console.WriteLine(File.GetAttributes(filelist[i]) + "\t" + FileAttributes.ReadOnly);
+                        // Console.WriteLine(File.GetAttributes(filelist[i]) == FileAttributes.ReadOnly);
+                        // Console.WriteLine(File.GetAttributes(filelist[i]));
+                        // Console.WriteLine(FileAttributes.ReadOnly);
+                        // Console.WriteLine(File.GetAttributes(filelist[i]).ToString());
+                        // Console.WriteLine(FileAttributes.ReadOnly.ToString());
+                        File.SetAttributes(filelist[i], FileAttributes.Normal);
+                        // Console.WriteLine(File.GetAttributes(filelist[i]));
+                        // Console.ReadKey();
+                    }
+                    File.Delete(filelist[i]);
                 }
-                File.Delete(filelist[i]);
+            }
+            catch (System.FieldAccessException e)
+            {
+                Console.WriteLine($"删除时出现错误");
+                System.Console.WriteLine(e.Message);
             }
 
-            //执行完后删除文件，退出递归。
-            if ((File.GetAttributes(MoveDir) & FileAttributes.ReadOnly) == FileAttributes.ReadOnly)
+            try
             {
-                File.SetAttributes(MoveDir, FileAttributes.Normal);
+                //执行完后删除文件，退出递归。
+                if ((File.GetAttributes(MoveDir) & FileAttributes.ReadOnly) == FileAttributes.ReadOnly)
+                {
+                    File.SetAttributes(MoveDir, FileAttributes.Normal);
+                }
+                Directory.Delete(MoveDir);
             }
-            Directory.Delete(MoveDir);
+            catch (System.FieldAccessException e)
+            {
+                Console.WriteLine($"删除文件夹时出现错误");
+                System.Console.WriteLine(e.Message);
+            }
+
             return;
         }
     }
