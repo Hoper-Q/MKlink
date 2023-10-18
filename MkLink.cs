@@ -204,7 +204,9 @@ namespace mklink程序
                 catch (IOException e)
                 {
                     Console.WriteLine(e.Message + "传输问题");
+                    Console.WriteLine($"输入任意键退出");
                     Console.ReadKey();
+                    Environment.Exit(0);
                 }
 
             }
@@ -264,8 +266,11 @@ namespace mklink程序
             }
             catch (System.FieldAccessException e)
             {
-                Console.WriteLine($"复制文件时出现错误");
                 System.Console.WriteLine(e.Message);
+                Console.WriteLine($"复制文件时出现错误");
+                Console.WriteLine($"输入任意键退出");
+                Console.ReadKey();
+                Environment.Exit(0);
             }
 
 
@@ -336,8 +341,11 @@ namespace mklink程序
             }
             catch (System.FieldAccessException e)
             {
-                Console.WriteLine($"删除时出现错误");
                 System.Console.WriteLine(e.Message);
+                Console.WriteLine($"删除时出现错误");
+                Console.WriteLine($"输入任意键退出");
+                Console.ReadKey();
+                Environment.Exit(0);
             }
 
             try
