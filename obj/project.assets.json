@@ -1,8 +1,7 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {},
-    "net6.0/win10-x64": {}
+    "net6.0": {}
   },
   "libraries": {},
   "projectFileDependencyGroups": {
@@ -63,10 +62,6 @@
             "version": "[6.0.21, 6.0.21]"
           },
           {
-            "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-            "version": "[6.0.21, 6.0.21]"
-          },
-          {
             "name": "Microsoft.NETCore.App.Host.win-x64",
             "version": "[6.0.21, 6.0.21]"
           },
@@ -75,15 +70,7 @@
             "version": "[6.0.21, 6.0.21]"
           },
           {
-            "name": "Microsoft.NETCore.App.Runtime.win-x64",
-            "version": "[6.0.21, 6.0.21]"
-          },
-          {
             "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[6.0.21, 6.0.21]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
             "version": "[6.0.21, 6.0.21]"
           }
         ],
@@ -94,11 +81,14 @@
         },
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
-    },
-    "runtimes": {
-      "win10-x64": {
-        "#import": []
-      }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "读取缓存文件 E:\\下载文件\\Git\\Test1\\MKlink\\obj\\project.nuget.cache 时遇到问题: Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

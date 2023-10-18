@@ -220,7 +220,11 @@ E:\下载文件\Git\Test1\MKlink\bin\Debug\net6.0\win10-x64\publish\dbgshim.dll
 E:\下载文件\Git\Test1\MKlink\bin\Debug\net6.0\win10-x64\publish\hostfxr.dll
 E:\下载文件\Git\Test1\MKlink\bin\Debug\net6.0\win10-x64\publish\hostpolicy.dll
 E:\下载文件\Git\Test1\MKlink\bin\Debug\net6.0\win10-x64\publish\mscordaccore.dll
+<<<<<<< HEAD
 E:\下载文件\Git\Test1\MKlink\bin\Debug\net6.0\win10-x64\publish\mscordaccore_amd64_amd64_6.0.2123.36311.dll
+=======
+E:\下载文件\Git\Test1\MKlink\bin\Debug\net6.0\win10-x64\publish\mscordaccore_amd64_amd64_6.0.1623.17311.dll
+>>>>>>> dc7666ee48254472fa8824eb93eb6d7d29a5998c
 E:\下载文件\Git\Test1\MKlink\bin\Debug\net6.0\win10-x64\publish\mscordbi.dll
 E:\下载文件\Git\Test1\MKlink\bin\Debug\net6.0\win10-x64\publish\mscorrc.dll
 E:\下载文件\Git\Test1\MKlink\bin\Debug\net6.0\win10-x64\publish\msquic.dll
